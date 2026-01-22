@@ -15,16 +15,21 @@ jobs:
       with:
           distribution: 'temurin'
           java-version: '17'
-    - name: Setup Mainframe Environment and Upload COBOL Check
+
+    - name: Create Zowe z/OSMF profile
+      run: |
+        zowe profiles create zosmf-profile ci-profile \
+        --host $ZOSMF_HOST \
+        --port $ZOSMF_PORT \
+        --user $ZOSMF_USER \
+        --password $ZOSMF_PASSWORD \
+        --reject-unauthorized $ZOSMF_REJECT_UNAUTHORIZED
       env:
-        ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
-        ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
-        #
         ZOSMF_HOST: ${{ secrets.ZOSMF_HOST }}
         ZOSMF_PORT: ${{ secrets.ZOSMF_PORT }}
         ZOSMF_USER: ${{ secrets.ZOSMF_USER }}
         ZOSMF_PASSWORD: ${{ secrets.ZOSMF_PASSWORD }}
         ZOSMF_REJECT_UNAUTHORIZED: false
-      run: |
-        chmod +x .github/scripts/zowe_operations.sh
-        .github/scripts/zowe_operations.sh
+        
+    - name: Run Zowe command
+      run: zowe zos-jobs list jobs --rfj
