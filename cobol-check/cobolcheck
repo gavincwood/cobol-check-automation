@@ -1,2 +1,2 @@
 #!/bin/sh
-java -jar bin/cobol-check-0.2.19.jar $@ --config-file /z/public/cobol-check.config.properties
+java -jar /z/bin/cobol-check.jar $@ --config-file /z/public/cobol-check.config.properties
