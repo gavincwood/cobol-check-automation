@@ -1,0 +1,30 @@
+name: COBOL Check Automation
+
+on:
+    push:
+      branches: [ main ]
+      
+jobs:
+  cobol-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+          distribution: 'temurin'
+          java-version: '17'
+    - name: Setup Mainframe Environment and Upload COBOL Check
+      env:
+        ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
+        ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
+        #
+        ZOSMF_HOST: ${{ secrets.ZOSMF_HOST }}
+        ZOSMF_PORT: ${{ secrets.ZOSMF_PORT }}
+        ZOSMF_USER: ${{ secrets.ZOSMF_USER }}
+        ZOSMF_PASSWORD: ${{ secrets.ZOSMF_PASSWORD }}
+        ZOSMF_REJECT_UNAUTHORIZED: false
+      run: |
+        chmod +x .github/scripts/zowe_operations.sh
+        .github/scripts/zowe_operations.sh
