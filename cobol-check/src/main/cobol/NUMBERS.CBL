@@ -18,4 +18,5 @@
        77   CHAR-CT                      PIC S9(3) COMP.   
        PROCEDURE DIVISION.
            GOBACK.
+
       
