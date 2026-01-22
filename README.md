@@ -1,2 +1,2 @@
-# cobol-check-automation 15
+# cobol-check-automation 16
 cobol-check-automation
