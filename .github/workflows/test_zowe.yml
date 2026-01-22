@@ -18,7 +18,7 @@ jobs:
 
     - name: Create Zowe z/OSMF profile
       run: |
-        zowe profiles create zosmf-profile ci-profile \
+        /usr/local/bin/zowe profiles create zosmf-profile ci-profile \
         --host $ZOSMF_HOST \
         --port $ZOSMF_PORT \
         --user $ZOSMF_USER \
@@ -32,4 +32,4 @@ jobs:
         ZOSMF_REJECT_UNAUTHORIZED: false
         
     - name: Run Zowe command
-      run: zowe zos-jobs list jobs --rfj
+      run: /usr/local/bin/zowe zos-jobs list jobs --rfj
