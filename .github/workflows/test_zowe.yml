@@ -18,7 +18,7 @@ jobs:
 
     - name: Create Zowe z/OSMF profile
       run: |
-        npx @zowe/cli profiles create zosmf-profile ci-profile \
+        npx @zowe/cli create zosmf-profile ci-profile \
         --host $ZOSMF_HOST \
         --port $ZOSMF_PORT \
         --user $ZOSMF_USER \
